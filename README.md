@@ -6,7 +6,7 @@ This project generates the industry-standard infrastructure for a containerized 
 
 From your Node.js project, run:
 ```console
-npm install @open-standard/ecs-application
+npm install @johnedquinn/ecs-application
 ```
 
 ## Configuration
