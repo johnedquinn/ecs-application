@@ -112,3 +112,5 @@ class EcsApplication extends Construct {
     }
 
 }
+
+export { EcsApplication, EcsApplicationProps };
