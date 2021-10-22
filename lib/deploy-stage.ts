@@ -1,4 +1,4 @@
-import { StageProps, Artifact } from '@aws-cdk/aws-codepipeline';
+import { StageProps, Artifact, ArtifactPath } from '@aws-cdk/aws-codepipeline';
 import { EcsDeployAction } from '@aws-cdk/aws-codepipeline-actions';
 import { Repository } from '@aws-cdk/aws-ecr';
 import { Construct, Duration, CfnOutput } from '@aws-cdk/core';
@@ -194,7 +194,7 @@ class DeployStage extends Construct {
     private createDeployStage(stageName: string, image: Artifact): StageProps {
         const ecsDeployAction = new EcsDeployAction({
             actionName: 'ECSDeploy_Action',
-            input: image,
+            imageFile: new ArtifactPath(image, `${this.stage}.json`),
             service: this.ecsManager.service,
         });
         return {
