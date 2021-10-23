@@ -1,4 +1,4 @@
-# On a merge/commit to main, this will 
+# On a merge/commit to main, this will perform a release and will publish a package to GitHub and NPM
 
 name: Release
 
@@ -22,8 +22,6 @@ jobs:
       run: npx ci
     - name: Install semantic-release Extra Plugins
       run: npm install --save-dev @semantic-release/changelog @semantic-release/git      
-    - name: Lint
-      run: npm run lint-fix
     - name: Build
       run: npm run build      
     - name: Release
