@@ -1,6 +1,10 @@
 *.js
 !jest.config.js
+!commitlint.config.js
+!release.config.js
+
 *.d.ts
+
 node_modules
 
 # CDK asset staging directory
