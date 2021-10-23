@@ -23,7 +23,9 @@ jobs:
     - name: Install semantic-release Extra Plugins
       run: npm install --save-dev @semantic-release/changelog @semantic-release/git      
     - name: Build
-      run: npm run build      
+      env:
+        CI: false
+      run: npm run build    
     - name: Release
       env:
         GITHUB_TOKEN: ${{ secrets.GH_PACKAGE_TOKEN }}
