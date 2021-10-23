@@ -1,0 +1,33 @@
+# On a merge/commit to main, this will 
+
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install Dependencies
+      run: npx ci
+    - name: Install semantic-release Extra Plugins
+      run: npm install --save-dev @semantic-release/changelog @semantic-release/git      
+    - name: Lint
+      run: npm run lint-fix
+    - name: Build
+      run: npm run build      
+    - name: Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PACKAGE_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_PACKAGE_TOKEN }}
+      run: npx semantic-release
