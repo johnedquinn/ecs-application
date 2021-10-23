@@ -5,6 +5,12 @@ name: Release
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
+    name:
+        description: 'Manual Trigger'
+        required: false
+        default: 'Manual Trigger'
+    
 
 jobs:
   release:
@@ -27,8 +33,6 @@ jobs:
     - name: Install Extra Plugins for `semantic-release`
       run: npm install --save-dev @semantic-release/changelog @semantic-release/git      
     - name: Build
-      env:
-        CI: false
       run: npm run build    
     - name: Release
       env:
